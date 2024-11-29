@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.developia.mapper.BookmarkMapper">
+
+    <!-- 북마크된 게시글 상세정보 조회 -->
+	<select id="getBookmarkedBoards" resultType="net.developia.domain.BoardVO">
+        SELECT b.bno, b.title, b.content, b.writeDate, b.hit
+        FROM board b
+        JOIN bookmark bm ON b.bno = bm.board_id
+        WHERE bm.member_id = #{memberId} AND bm.status = 1
+	</select>
+
+</mapper>

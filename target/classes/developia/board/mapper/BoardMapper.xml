@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.developia.board.mapper.BoardMapper">
+	<!-- 게시판 리스트 -->
+	<select id="list" resultType="net.developia.board.vo.BoardVO">
+		select rownum rnum, bno, title,
+		content, writeDate, hit, member_id, club_id
+		from(
+		select rownum rnum, bno, title, content, writeDate, hit, member_id, club_id
+		from(
+		select
+		bno, title, content, writeDate, hit, member_id, club_id
+		from
+		board
+		order by bno desc
+		)
+		)
+		where rnum between #{startRow} and #{endRow}
+	</select>
+
+	<!-- 게시판 리스트 페이지 처리를 위한 전체 데이터 개수 가져오기 -->
+	<select id="getTotalRow" resultType="Long">
+		select count(*)
+		from board
+	</select>
+
+	<!-- 게시판 글보기 조회수 1증가 -->
+	<!-- # {obj} 1.변수의 이름, 2.vo의 getter이름, 3.Map의 key -->
+	<update id="increase">
+		update board set hit = hit + 1
+		where bno = #{bno}
+	</update>
+
+	<!-- 게시판 글보기 -->
+	<select id="view" resultType="net.developia.board.vo.BoardVO">
+		select bno, title, content,
+		writeDate, hit, member_id, club_id
+		from board
+		where bno = #{bno}
+	</select>
+
+
+	<insert id="write">
+		<!-- BoardVO의 bno에 setter를 이용해서 시퀀스에서 받아온 번호를 세팅해준다. -->
+		<selectKey keyProperty="bno" resultType="Long"
+			order="BEFORE">
+			select board_seq.nextval from dual
+		</selectKey>
+		insert into board(bno, title, content)
+		values(#{bno}, #{title}, #{content})
+	</insert>
+
+
+
+
+</mapper>  

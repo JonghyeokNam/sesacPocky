@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="net.developia.reply.mapper.ReplyMapper">
+	<insert id="insert">
+ 		INSERT INTO reply (
+            id, board_id, reply, replydate, updatedate, likes_count, member_id
+        )
+        VALUES (
+            seq_reply.NEXTVAL, #{board_id}, #{reply}, SYSDATE, SYSDATE, 0, #{member_id}
+        )
+ 	</insert>
+ 	
+ 	<select id="read" resultType="net.developia.reply.domain.ReplyVO">
+ 		select * from reply
+ 		where id = #{id}
+ 	</select>
+ 	
+ 	<delete id="delete">
+ 		delete from reply where id = #{id}
+ 	</delete>
+ 	
+ 	<update id="update">
+ 		update reply set 
+ 			reply = #{reply}, 
+ 			updateDate = sysdate 
+ 		where id = #{id}
+ 	</update>
+ 	
+ 	<select id="getListWithPaging" resultType="ReplyVO">
+ 		select id, board_id, member_id, reply, replyDate, updateDate
+ 		from reply
+ 		where board_id = #{board_id}
+ 		order by id asc
+ 	</select>
+	
+</mapper>  

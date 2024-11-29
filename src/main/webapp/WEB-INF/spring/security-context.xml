@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+	
+	<!-- 이때, 반드시 CustomAccessDeniedHandler 클래스가 존재해야 함 -->
+	<!-- 이걸, 등록해주는 것! -->
+	<bean id="customAccessDenied" class="net.developia.security.CustomAccessDeniedHandler" />
+	<bean id="customLoginSuccess" class="net.developia.security.CustomLoginSuccessHandler" />
+	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+	<bean id="CustomUserDetailsService" class="net.developia.security.CustomUserDetailsService"/>
+	
+	
+	<security:http auto-config="true" use-expressions="true">
+		<security:intercept-url pattern='/board/pocky-home' access="hasRole('ROLE_USER')" />
+		<security:intercept-url pattern='/board/pocky-mypage' access="hasRole('ROLE_USER')" />
+		<security:intercept-url pattern='/board/bookmark' access="hasRole('ROLE_USER')" />
+		<!-- <security:form-login /> -->
+		<security:form-login />
+		<security:logout  />
+		<security:access-denied-handler ref="customAccessDenied" />
+	</security:http>
+	
+	<security:authentication-manager>
+		<security:authentication-provider user-service-ref="CustomUserDetailsService">
+			<!-- <security:jdbc-user-service data-source-ref="dataSource"/> -->
+			<security:password-encoder ref="bcryptPasswordEncoder" />
+		</security:authentication-provider>
+	
+	</security:authentication-manager>
+</beans>

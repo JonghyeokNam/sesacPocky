@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.developia.mapper.MemberMapper">
+
+	<resultMap type="net.developia.domain.MemberVO" id="memberMap">
+		<id property="id" column="id" />
+		<result property="id" column="id" />
+		<result property="password" column="password" />
+		<result property="name" column="name" />
+		<result property="phone_num" column="phone_num" />
+		<result property="email" column="email" />
+		<result property="club_id" column="club_id" />
+		<result property="enabled" column="enabled" />
+		<result property="authority" column="authority" />
+	</resultMap>
+	
+	<resultMap type="net.developia.domain.ClubVO" id="clubMap">
+		<id property="club_id" column="club_id" />
+		<result property="club_id" column="club_id" />
+		<result property="club_name" column="club_name" />
+	</resultMap>
+	
+	<select id="read" resultMap="memberMap">
+		SELECT
+			m.id, m.name, m.phone_num, m.email, m.club_id, c.club_name, m.authority
+		FROM
+			member m JOIN p_club c ON m.club_id = c.club_id 
+		WHERE m.id = #{id}
+	</select>
+	
+	<update id="update" parameterType="MemberVO">
+	    UPDATE member
+	    SET
+	        name = #{name},
+	        email = #{email},
+	        phone_num = #{phone_num},
+	        club_name =#{club_name},
+	        club_id = (SELECT id FROM p_club WHERE club_name = #{club_name})
+	    WHERE id = #{id}
+	</update>
+
+</mapper>

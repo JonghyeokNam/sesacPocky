@@ -1,0 +1,263 @@
+@charset "UTF-8";
+
+* {
+    box-sizing: border-box; /* 패딩과 보더를 요소 크기에 포함 */
+}
+
+ body {
+     font-family: Arial, sans-serif;
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+     
+     padding-top: 60px; /* 헤더 높이만큼 여백 추가 */
+     overflow-x: hidden; /* 가로 스크롤 방지 */
+ }
+
+ header {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     padding: 10px 20px;
+     background-color: #fff;
+     border-bottom: 1px solid #ddd;
+     
+	position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    height: 60px; /* 헤더 높이 설정 */
+    
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* 헤더 내부 요소 잘림 방지 */
+ }
+
+ .logo {
+     display: flex;
+     align-items: center;
+ }
+
+ .logo img {
+     height: 40px;
+ }
+
+ nav {
+     display: flex;
+     gap: 15px;
+ }
+
+ nav button {
+     text-decoration: none;
+     color: #333;
+     padding: 5px 10px;
+     border: 1px dashed #ddd;
+     border-radius: 5px;
+     font-size: 14px;
+ }
+
+ .auth-buttons {
+     display: flex;
+     gap: 10px;
+ }
+
+ .auth-buttons button {
+     padding: 5px 10px;
+     border: none;
+     border-radius: 5px;
+     cursor: pointer;
+     font-size: 14px;
+ }
+ 
+ .auth-buttons .my-page {
+     background-color: #000;
+     color: #fff;
+ }
+
+ .auth-buttons .sign-in {
+     background-color: #ddd;
+ }
+
+ .auth-buttons .register {
+     background-color: #000;
+     color: #fff;
+ }
+ 
+ .personal-info {
+     padding: 100px 0 0 0;
+ }
+      
+@font-face {
+    font-family: 'ClimateCrisisKR-1979';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/ClimateCrisisKR-1979.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+      
+.my-page-title{
+   	display: flex;
+    justify-content: space-between;
+    align-items: left;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    width: 40%; /* 원하는 너비로 설정 */
+	margin-left: auto;
+	margin-right: auto; /* 화면 중앙에 배치 */
+	padding: 0 0 5px 0;
+	font-family: 'ClimateCrisisKR-1979', sans-serif;
+	font-size: 30px;
+ }
+ 
+ .my-page-bookmark {
+   	display: flex;
+    justify-content: space-between;
+    align-items: left;
+    margin: 0 auto;
+    
+	margin-left: auto;
+	margin-right: auto; /* 화면 중앙에 배치 */
+	padding: 0 0 5px 0;
+	font-family: 'ClimateCrisisKR-1979', sans-serif;
+	font-size: 30px;
+ }
+
+ .personal-Details {
+     display: flex;
+     align-items: center;
+     padding: 10px 0;
+     border-bottom: 1px solid #ddd;
+ }
+  
+/* Personal-details 컨테이너의 너비 설정 */
+.personal-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    width: 40%; /* 원하는 너비로 설정 */
+	margin-left: auto;
+	margin-right: auto; /* 화면 중앙에 배치 */
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+/* 왼쪽 아이콘과 텍스트에 대한 스타일 */
+.personal-details .left {
+    display: flex;
+    align-items: center;
+}
+
+/* 아이콘 크기 */
+.personal-details .left i {
+    font-size: 20px; /* 아이콘 크기 */
+    margin-right: 10px;
+}
+
+/* 오른쪽 텍스트 정렬 */
+.personal-details .right {
+    text-align: right;
+}
+
+/* 각 항목 간 여백 설정 */
+.personal-details span {
+    margin-left: 5px;
+}
+
+
+.move-icon {
+    display: flex;
+    justify-content: space-evenly;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    /* border-top: 1px solid #ddd; */
+  }
+
+.move-icon button{
+    font-size: 30px;
+    border: none;
+	background: transparent;
+	cursor: pointer;
+  }
+  
+/* Bookmark 디자인 */
+
+table {
+  border: 1px #a39485 solid;
+  font-size: .9em;
+  /* box-shadow: 0 2px 5px rgba(0,0,0,.25); */
+  width: 70%;
+  border-collapse: collapse;
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 0 auto;
+  padding-bottom: 20px;
+}
+
+th {
+  text-align: left;
+}
+  
+thead {
+  font-weight: bold;
+  color: #fff;
+  background: #73685d;
+  opacity: 0.5;
+}
+  
+ td, th {
+  padding: 1em .5em;
+  vertical-align: middle;
+}
+  
+ td {
+  border-bottom: 1px solid rgba(0,0,0,.1);
+  background: #fff;
+}
+
+a {
+  color: #73685d;
+}
+  
+ @media all and (max-width: 768px) {
+    
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+  
+  th {
+    text-align: right;
+  }
+  
+  table {
+    position: relative; 
+    padding-bottom: 0;
+    border: none;
+    box-shadow: 0 0 10px rgba(0,0,0,.2);
+  }
+  
+  thead {
+    float: left;
+    white-space: nowrap;
+  }
+  
+  tbody {
+    overflow-x: auto;
+    overflow-y: hidden;
+    position: relative;
+    white-space: nowrap;
+  }
+  
+  tr {
+    display: inline-block;
+    vertical-align: top;
+  }
+  
+  th {
+    border-bottom: 1px solid #a39485;
+  }
+  
+  td {
+    border-bottom: 1px solid #e5e5e5;
+  }
